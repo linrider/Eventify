@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/your_database
+    username: posfgres
+    password: asdasd123
+    driver-class-name: com.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    databas: postgresql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.postgresql9.Dialect
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
+    enabled: true

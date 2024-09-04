@@ -43,4 +43,10 @@ public class User {
 
     Set<Role> roles;
 
+    Set<Event> favoriteEvents;
+
+    Set<Event> createdEvents;
+
+    Set<Event> createdCourses;
+
 }
