@@ -5,15 +5,23 @@ import java.util.Set;
 import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.Table;
 import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE) 
 public class User {
     @Id
@@ -41,6 +49,9 @@ public class User {
     @Column(name = "is_phone_verified")
     boolean isPhoneVerified;
 
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
     Set<Role> roles;
 
     Set<Event> favoriteEvents;
