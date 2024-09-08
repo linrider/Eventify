@@ -1,6 +1,7 @@
 package ua.lazin.vladyslav.eventify.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +28,7 @@ public class Event {
 
     String description;
 
-    LocalDate date;
+    LocalDateTime dateTime;
 
     Course course;
 

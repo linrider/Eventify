@@ -58,6 +58,8 @@ public class User {
 
     Set<Event> createdEvents;
 
-    Set<Event> createdCourses;
+    Set<Course> createdCourses;
+
+    Set<Course> subscribedCourses;
 
 }
