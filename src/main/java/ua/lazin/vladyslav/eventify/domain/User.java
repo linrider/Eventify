@@ -2,6 +2,7 @@ package ua.lazin.vladyslav.eventify.domain;
 
 import java.util.Set;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Column;
@@ -52,6 +53,7 @@ public class User {
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'USER'")
     Set<Role> roles;
 
     Set<Event> favoriteEvents;
