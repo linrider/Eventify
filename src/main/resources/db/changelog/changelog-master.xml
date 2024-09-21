@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="db/changelog/changeset/create-chema.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/changeset/2024-13-09-14-00_create_users_table.sql" relativeToChangelogFile="false"/>
     <!-- Add your change sets here -->
 
 </databaseChangeLog>

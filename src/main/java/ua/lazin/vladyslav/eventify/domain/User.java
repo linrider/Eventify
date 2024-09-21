@@ -1,24 +1,16 @@
 package ua.lazin.vladyslav.eventify.domain;
 
-import java.util.Set;
-
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinTable;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;
 import lombok.Data;
+`import lombok.experimental.FieldDefaults;
 
 @Entity
 @Data
@@ -26,42 +18,52 @@ import lombok.Data;
 @FieldDefaults(level = AccessLevel.PRIVATE) 
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", updatable = false, nullable = false)
+    Long id;
 
-    @Column(name = "user_name")
-    String userName;
+    @Column(name = "nickname", nullable = false, unique = true)
+    String nickname;
 
-    String name;
+    @Column(name = "first_name", nullable = false)
+    String firstName;
 
-    String surname;
+    @Column(name = "last_name", nullable = false)
+    String lastName;
 
-    String email;
-
+    @Column(name = "password")
     String password;
+
+    @Column(name = "email")
+    String email;
 
     @Column(name = "phone_number")
     String phoneNumber;
 
-    @Column(name = "is_email_verified")
+    @Column(name = "email_verified")
+    @ColumnDefault("false")
     boolean isEmailVerified;
 
-    @Column(name = "is_phone_verified")
+    @Column(name = "phone_erified")
+    @ColumnDefault("false")
     boolean isPhoneVerified;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    @ColumnDefault("'USER'")
-    Set<Role> roles;
+    @Column(name = "active")
+    @ColumnDefault("true")
+    boolean isActive;
 
-    Set<Event> favoriteEvents;
+    // @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    // @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "fk_user_id"))
+    // @Enumerated(EnumType.STRING)
+    // @ColumnDefault("'USER'")
+    // Set<Role> roles;
 
-    Set<Event> createdEvents;
+    // Set<Event> favoriteEvents;
 
-    Set<Course> createdCourses;
+    // Set<Event> createdEvents;
 
-    Set<Course> subscribedCourses;
+    // Set<Course> createdCourses;
+
+    // Set<Course> subscribedCourses;
 
 }

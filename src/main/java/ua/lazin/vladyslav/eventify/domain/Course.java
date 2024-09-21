@@ -20,7 +20,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "course_id")
-    int id;
+    Long id;
 
     String title;
 
@@ -28,5 +28,6 @@ public class Course {
 
     Set<Event> events;
 
+    @Column(name = "fk_creator_id")
     User creator;
 }

@@ -1,6 +1,5 @@
 package ua.lazin.vladyslav.eventify.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -22,15 +21,18 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "event_id")
-    long id;
+    Long id;
     
     String title;
 
     String description;
 
+    @Column(name = "event_time")
     LocalDateTime dateTime;
 
+    @Column(name = "fk_course_id")
     Course course;
 
+    @Column(name = "fk_creator_id")
     User creator;
 }

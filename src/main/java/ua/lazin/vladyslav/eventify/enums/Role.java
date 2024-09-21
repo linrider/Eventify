@@ -1,4 +1,4 @@
-package ua.lazin.vladyslav.eventify.domain;
+package ua.lazin.vladyslav.eventify.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 
