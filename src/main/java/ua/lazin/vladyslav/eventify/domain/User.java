@@ -10,17 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
-`import lombok.experimental.FieldDefaults;
+import lombok.experimental.FieldDefaults;
 
 @Entity
 @Data
 @Table(name = "users")
-@FieldDefaults(level = AccessLevel.PRIVATE) 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", updatable = false, nullable = false)
-    Long id;
+    Integer id;
 
     @Column(name = "nickname", nullable = false, unique = true)
     String nickname;
@@ -31,7 +32,7 @@ public class User {
     @Column(name = "last_name", nullable = false)
     String lastName;
 
-    @Column(name = "password")
+    @Column(name = "pswd")
     String password;
 
     @Column(name = "email")
@@ -40,18 +41,19 @@ public class User {
     @Column(name = "phone_number")
     String phoneNumber;
 
-    @Column(name = "email_verified")
+    @Column(name = "email_verified", nullable = false)
     @ColumnDefault("false")
-    boolean isEmailVerified;
+    boolean isEmailVerified = false;  // Java-side default
 
-    @Column(name = "phone_erified")
+    @Column(name = "phone_verified", nullable = false)
     @ColumnDefault("false")
-    boolean isPhoneVerified;
+    boolean isPhoneVerified = false;  // Java-side default
 
-    @Column(name = "active")
+    @Column(name = "active", nullable = false)
     @ColumnDefault("true")
-    boolean isActive;
+    boolean isActive = true;  // Java-side default
 
+    // Uncomment and define these fields correctly when ready
     // @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     // @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "fk_user_id"))
     // @Enumerated(EnumType.STRING)
@@ -59,11 +61,7 @@ public class User {
     // Set<Role> roles;
 
     // Set<Event> favoriteEvents;
-
     // Set<Event> createdEvents;
-
     // Set<Course> createdCourses;
-
     // Set<Course> subscribedCourses;
-
 }
