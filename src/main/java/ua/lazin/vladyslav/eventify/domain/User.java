@@ -1,5 +1,7 @@
 package ua.lazin.vladyslav.eventify.domain;
 
+import java.io.Serializable;
+
 import org.hibernate.annotations.ColumnDefault;
 
 import jakarta.persistence.Column;
@@ -16,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User {
+public class User implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
