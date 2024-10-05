@@ -6,6 +6,10 @@ server:
     context-path: /eventify
 
 spring:
+  security:
+    user:
+      name: admin
+      password: admin
   datasource:
     url: jdbc:postgresql://localhost:5432/eventify
     username: postgres
@@ -19,6 +23,5 @@ spring:
       ddl-auto: validate
     show-sql: true
     database: postgresql
-    properties:
-      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    
         
