@@ -1,6 +1,5 @@
 package ua.lazin.vladyslav.eventify.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import ua.lazin.vladyslav.eventify.repository.UserRepository;
 public class UserService {
     private final UserRepository userRepository;
 
-    
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -35,6 +33,22 @@ public class UserService {
 
     public User getUserById(int id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    public boolean updateUser(User user) {
+        Optional<User> userFromDb = userRepository.findById(user.getId());
+        int rowsAffected = 0;
+        if (userFromDb.isPresent()) {
+            rowsAffected = userRepository.update(
+                    user.getId(),
+                    user.getNickname(),
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getEmail(),
+                    user.getPhoneNumber(),
+                    user.getPassword());
+        }
+        return rowsAffected > 0;
     }
 
 }

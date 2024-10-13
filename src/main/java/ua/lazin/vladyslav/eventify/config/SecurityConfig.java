@@ -45,11 +45,11 @@ public class SecurityConfig {
         return http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-            .requestMatchers(HttpMethod.GET,"/user/welcome")
+            .requestMatchers(HttpMethod.GET,"/api/welcome")
             .permitAll()
-            .requestMatchers(HttpMethod.POST,"/user/add")
+            .requestMatchers(HttpMethod.POST,"/api/users")
             .authenticated()
-            .requestMatchers("/user/**").authenticated())
+            .requestMatchers("/**").authenticated())
             .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
             .httpBasic(Customizer.withDefaults())
             .build();

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ua.lazin.vladyslav.eventify.domain.User;
 import ua.lazin.vladyslav.eventify.service.UserService;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UserController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -34,21 +36,29 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public User getAppById(@PathVariable int id) {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/users")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public void addUser(@RequestBody User user) {
+    public User addUser(@RequestBody User user) {
         if (userService.addUser(user)) {
             LOGGER.info("User added");
         } else {
             LOGGER.info("User already exists");
             
         }
+        return user;
+    }
+
+    @PutMapping("/users")
+    public User updateUser(@RequestBody User user) {
+        boolean isSuccessfull = userService.updateUser(user);
+        LOGGER.info("User updated: " + isSuccessfull);
+        return user;
     }
 
 }
